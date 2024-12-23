@@ -19,10 +19,11 @@ public class WordleFeedback {
     public static String feedBackString(String guess, String secretWord) {
         StringBuilder feedback = new StringBuilder();
         boolean[] processedSecret = new boolean[WORD_LENGTH]; // Controla las letras ya procesadas en la palabra secreta
-    
-        // Crear un array para la salida inicial (para que luego podamos modificarlo en las posiciones necesarias)
+
+        // Crear un array para la salida inicial (para que luego podamos modificarlo en
+        // las posiciones necesarias)
         String[] output = new String[WORD_LENGTH];
-    
+
         // Primera pasada: Identificar letras en la posición correcta (verde)
         for (int i = 0; i < WORD_LENGTH; i++) {
             char currentChar = guess.charAt(i);
@@ -33,16 +34,17 @@ public class WordleFeedback {
                 output[i] = null; // Marcador temporal para procesar más adelante
             }
         }
-    
-        // Segunda pasada: Identificar letras presentes en posiciones incorrectas (amarillo) o ausentes (rojo)
+
+        // Segunda pasada: Identificar letras presentes en posiciones incorrectas
+        // (amarillo) o ausentes (rojo)
         for (int i = 0; i < WORD_LENGTH; i++) {
             if (output[i] != null) {
                 continue; // Si ya está verde, saltar
             }
-    
+
             char currentChar = guess.charAt(i);
             boolean found = false;
-    
+
             for (int j = 0; j < WORD_LENGTH; j++) {
                 // Comprobar si la letra está en otra posición y no ha sido procesada
                 if (!processedSecret[j] && currentChar == secretWord.charAt(j)) {
@@ -52,19 +54,18 @@ public class WordleFeedback {
                     break;
                 }
             }
-    
+
             if (!found) {
                 output[i] = applyColor(String.valueOf(currentChar), ANSI_RED); // No está en la palabra (rojo)
             }
         }
-    
+
         // Construir el feedback final
         for (String letter : output) {
             feedback.append(letter);
         }
-    
+
         return feedback.toString();
     }
-    
 
 }
