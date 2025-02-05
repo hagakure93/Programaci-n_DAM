@@ -6,15 +6,13 @@ import java.util.Scanner;
 public final class WordleGame {
 
     int MAX_TRIES = 6;
-    String[] fileWords;
     String secretWord;
     int RemainingAttemps;
     String[] triesHistory;
-    // Hacer que el Array sea un fileReader
+
     
 
-    public WordleGame(String[] fileWords) { // Acuérdate de cambiar la entrada por un filereader
-        this.fileWords = fileWords;
+    public WordleGame(String[] fileWords) { 
         this.secretWord = selectRandomWord(fileWords);
         this.RemainingAttemps = MAX_TRIES;
         this.triesHistory = new String[MAX_TRIES];

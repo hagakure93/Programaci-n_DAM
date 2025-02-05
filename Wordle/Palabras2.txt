@@ -1,0 +1,10 @@
+juego
+mando
+raton
+tecla
+nivel
+jugar
+score
+combo
+final
+ninja
