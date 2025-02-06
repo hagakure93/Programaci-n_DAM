@@ -1,5 +1,8 @@
 package Wordle;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,9 +13,7 @@ public final class WordleGame {
     int RemainingAttemps;
     String[] triesHistory;
 
-    
-
-    public WordleGame(String[] fileWords) { 
+    public WordleGame(String[] fileWords) {
         this.secretWord = selectRandomWord(fileWords);
         this.RemainingAttemps = MAX_TRIES;
         this.triesHistory = new String[MAX_TRIES];
@@ -49,12 +50,14 @@ public final class WordleGame {
                 // Comprobar si el jugador ha adivinado la palabra secreta
                 if (palabra.equals(secretWord)) {
                     System.out.println("¡Felicidades! Has adivinado la palabra secreta.");
+                    showTriesHistory();
                     return; // Termina el juego
                 }
             }
 
             if (RemainingAttemps == 0) {
                 System.out.println("Has perdido. La palabra secreta era: " + secretWord);
+                showTriesHistory();
             }
         }
     }
@@ -70,10 +73,19 @@ public final class WordleGame {
 
     public void showTriesHistory() {
         System.out.println("Historial de intentos:");
-        for (int i = 0; i < triesHistory.length; i++) {
-            if (triesHistory[i] != null) {
-                System.out.println((i + 1) + ". " + triesHistory[i]); // Para que no empeice en 0 y se vea más bonito
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("historial_wordle.txt"))) {
+            for (int i = 0; i < triesHistory.length; i++) {
+                if (triesHistory[i] != null) {
+                    String intento = (i + 1) + ". " + triesHistory[i];
+                    System.out.println(intento);
+                    writer.write(intento);
+                    writer.newLine(); // Salto de línea en el archivo
+                }
             }
+            System.out.println("Historial guardado en 'historial_wordle.txt'.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar el historial en el archivo.");
         }
     }
 

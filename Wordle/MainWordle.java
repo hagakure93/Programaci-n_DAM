@@ -27,7 +27,7 @@ public class MainWordle {
             }
         }
 
-        // Ruta completa del archivo
+        
         String ruta = "/Users/hagakure/Documents/DAM/Asignaturas/Programación/TrabajoEnfoque/Wordle/Wordle/" + archivo;
 
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
