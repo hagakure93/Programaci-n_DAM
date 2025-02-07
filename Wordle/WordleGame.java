@@ -28,15 +28,13 @@ public final class WordleGame {
                 System.out.println("Tienes " + RemainingAttemps + " intentos restantes.");
                 System.out.println("Introduce tu intento (una palabra de 5 letras):");
 
-                // Leer la palabra
                 String palabra = entrada.nextLine();
 
-                // Validar la palabra
                 String result = getUserInput(palabra);
 
                 if (result.equals("La palabra debe tener 5 letras. Inténtalo de nuevo.")) {
                     System.out.println(result);
-                    continue; // Si la palabra no es válida, solicita un nuevo intento
+                    continue;
                 }
 
                 // Almacenar el intento en el array

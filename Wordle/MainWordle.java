@@ -45,7 +45,7 @@ public class MainWordle {
             return;
         }
 
-        // Convertimos el ArrayList a un Array de Strings
+        // Convierto el ArrayList 
         String[] fileWords = palabras.toArray(String[]::new);
 
         // Pasamos el array a la clase WordleGame

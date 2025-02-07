@@ -12,7 +12,7 @@ public class WordleFeedback {
 
     // Método auxiliar para aplicar color a una letra
     private static String applyColor(String letter, String color) {
-        return color + letter + ANSI_RESET; // Añade color y reinicia el formato
+        return color + letter + ANSI_RESET; 
     }
 
     // Genera la palabra con colores como feedback
